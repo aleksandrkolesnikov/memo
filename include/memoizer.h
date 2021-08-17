@@ -26,8 +26,8 @@ public:
 
     Memoizer(Memoizer&& other)
         : func{ std::move(other.func) }
-        , cache{ std::move(other.cache) }  {
-    }
+        , cache{ std::move(other.cache) }
+        {}
 
     ConstRef operator()(Args ...args) {
         const auto key = std::make_tuple(args...);

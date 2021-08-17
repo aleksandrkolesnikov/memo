@@ -37,12 +37,12 @@ using SignatureType = typename Signature<T>::Type;
 
 template <typename Function>
 auto memoize(Function func) {
-    return Memoizer<SignatureType<Function>, Function>{ func };
+    return Memoizer<SignatureType<Function>, Function>{ std::move(func) };
 }
 
 template <typename Signature, typename Function>
 auto memoize(Function func) {
-    return Memoizer<Signature, Function>{ func } ;
+    return Memoizer<Signature, Function>{ std::move(func) } ;
 }
 
 }

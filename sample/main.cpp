@@ -3,7 +3,6 @@
 
 
 int f(int x) {
-    std::cout << "FUCK\n";
     return x * 100;
 }
 
@@ -37,6 +36,10 @@ int main() {
 
     auto mm = memo::memoize<int(int, double)>(Foo{5});
     std::cout << "mm = " << mm(10, 0.78) << std::endl;
+
+    auto f = [&m, &mm](int value, double mul) { return mm(m(value), mul); };
+    auto mem3 = memo::memoize(f);
+    std::cout << mem3(10, 0.98) << std::endl;
 
     return 0;
 }
